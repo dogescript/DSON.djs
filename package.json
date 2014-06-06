@@ -1,0 +1,25 @@
+{
+  "name": "dson",
+  "version": "0.0.0",
+  "description": "DSON parser in Dogescript",
+  "main": "index.js",
+  "dependencies": {
+    "browserify": "^4.1.8",
+    "dogeify": "^0.0.1",
+    "dogescript": "^2.3.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/remixz/DSON.djs"
+  },
+  "keywords": [
+    "dson",
+    "dogescript"
+  ],
+  "author": "Zach Bruggeman <mail@bruggie.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/remixz/DSON.djs/issues"
+  },
+  "homepage": "https://github.com/remixz/DSON.djs"
+}
