@@ -24,9 +24,12 @@ module.exports = DSON
 
 function parse(string) {
     var output = undefined;
-    var keys = string.match(/'[^']+'|\S+/g);
+    var keys = string.match(/\S+/g);
 
     var currentKey = false;
+
+    // @todo - clean this regex up 
+    var tokenRegex = /^"|"$|"\.$|",$|,$|\.$/g;
 
     for (var i = 0; i < keys.length; i += 1) {
         var key = keys[i];
@@ -63,7 +66,7 @@ function parse(string) {
 
             // we're defining a key 
             if (currentKey === false) {
-                key = key.replace(/"/g, '');
+                key = key.replace(tokenRegex, '');
                 currentKey = key
                 // create the key 
                 output[key] = null
@@ -76,7 +79,7 @@ function parse(string) {
                     continue
                 }
 
-                key = key.replace(/"/g, '');
+                key = key.replace(tokenRegex, '');
                 output[currentKey] = key
                 currentKey = false
                 continue
@@ -98,10 +101,12 @@ function parse(string) {
 
                 for (var j = i += 1; j < keys.length; j += 1) {
                     var key = keys[j];
-                    key = key.replace(/"/g, '');
+                    key = key.replace(tokenRegex, '');
 
                     if (key === 'many') {
                         break
+                    } else if (key === 'and' || key === 'also') {
+                        continue
                     } else {
                         output[currentKey].push(key);
                     }
@@ -119,7 +124,24 @@ function parse(string) {
                 // DSON 2 is in octal 
                 output[currentKey] = parseInt(Number(key), 8)
             }
+        }
 
+        if (key === 'yes') {
+            if (currentKey) {
+                output[currentKey] = true
+            }
+        }
+
+        if (key === 'no') {
+            if (currentKey) {
+                output[currentKey] = false
+            }
+        }
+
+        if (key === 'empty') {
+            if (currentKey) {
+                output[currentKey] = null
+            }
         }
     }
 

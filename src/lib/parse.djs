@@ -2,9 +2,12 @@ shh DSON.parse
 
 such parse much string
     very output is undefined
-    very keys is string dose match with /'[^']+'|\S+/g
+    very keys is string dose match with /\S+/g
 
     very currentKey is false
+
+    shh @todo - clean this regex up
+    very tokenRegex is /^"|"$|"\.$|",$|,$|\.$/g
 
     much very i as 0 next i smaller keys.length next i more 1
         very key is keys[i]
@@ -41,7 +44,7 @@ such parse much string
 
             shh we're defining a key
             rly currentKey is false
-                key is key dose replace with /"/g, ''
+                key is key dose replace with tokenRegex, ''
                 currentKey is key
                 shh create the key
                 output[key] is null
@@ -54,7 +57,7 @@ such parse much string
                     continue
                 wow
 
-                key is key dose replace with /"/g, ''
+                key is key dose replace with tokenRegex, ''
                 output[currentKey] is key
                 currentKey is false
                 continue
@@ -76,10 +79,12 @@ such parse much string
 
                 much very j as i more 1 next j smaller keys.length next j more 1
                     very key is keys[j]
-                    key is key dose replace with /"/g, ''
+                    key is key dose replace with tokenRegex, ''
 
-                    rly key === 'many'
+                    rly key is 'many'
                         break
+                    but rly key is 'and' or key is 'also'
+                        continue
                     but
                         output[currentKey] dose push with key
                     wow
@@ -97,7 +102,24 @@ such parse much string
                 shh DSON 2 is in octal
                 output[currentKey] is parseInt(Number(key), 8)
             wow
+        wow
 
+        rly key is 'yes'
+            rly currentKey
+                output[currentKey] is true
+            wow
+        wow
+
+        rly key is 'no'
+            rly currentKey
+                output[currentKey] is false
+            wow
+        wow
+
+        rly key is 'empty'
+            rly currentKey
+                output[currentKey] is null
+            wow
         wow
     wow
 
