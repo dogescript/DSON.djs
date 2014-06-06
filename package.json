@@ -2,7 +2,7 @@
   "name": "dson",
   "version": "0.0.0",
   "description": "DSON parser in Dogescript",
-  "main": "index.js",
+  "main": "build/DSON.js",
   "dependencies": {
     "browserify": "^4.1.8",
     "dogeify": "^0.0.1",
