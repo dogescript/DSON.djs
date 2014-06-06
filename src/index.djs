@@ -7,11 +7,11 @@ quiet
 loud
 
 so ./lib/parse.djs as parse
-so ./lib/stringify.djs as stringify
+so ./lib/dogeify.djs as dogeify
 
 very DSON is {}
 
 DSON.parse is parse
-DSON.stringify is stringify
+DSON.dogeify is dogeify
 
 module.exports is DSON

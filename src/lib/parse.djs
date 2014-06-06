@@ -1,7 +1,7 @@
 shh DSON.parse
 
 such parse much string
-    very output
+    very output is undefined
     very keys is string dose match with /'[^']+'|\S+/g
 
     very currentKey is false
@@ -10,9 +10,23 @@ such parse much string
         very key is keys[i]
 
         rly key is 'such'
-            rly keys[keys.length - 1] is 'wow'
-                shh it's valid! :D
-                output is {}
+            rly typeof output is 'undefined'
+                rly keys[keys.length - 1] is 'wow'
+                    shh it's valid! :D
+                    output is {}
+                wow
+
+                continue
+            but rly currentKey
+                rly keys[i - 1] not 'is'
+                    shh not a valid value definition, keep going
+                    continue
+                wow
+
+                very slice is keys dose slice with i, keys.indexOf('wow', i)+1
+                very obj is keys dose splice with i, slice.length
+                very str is obj.join(' ')
+                output[currentKey] is plz parse with str
             wow
         wow
 

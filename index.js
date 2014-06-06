@@ -8,15 +8,18 @@
 */
 
 var parse = _dereq_('./lib/parse.djs');
-var stringify = _dereq_('./lib/stringify.djs');
+var dogeify = _dereq_('./lib/dogeify.djs');
 
 var DSON = {};
 
 DSON.parse = parse
-DSON.stringify = stringify
+DSON.dogeify = dogeify
 
 module.exports = DSON
-},{"./lib/parse.djs":2,"./lib/stringify.djs":3}],2:[function(_dereq_,module,exports){
+},{"./lib/dogeify.djs":2,"./lib/parse.djs":3}],2:[function(_dereq_,module,exports){
+// DSON.stringify 
+// coming later
+},{}],3:[function(_dereq_,module,exports){
 // DSON.parse 
 
 function parse(string) {
@@ -29,9 +32,23 @@ function parse(string) {
         var key = keys[i];
 
         if (key === 'such') {
-            if (keys[keys.length - 1] === 'wow') {
-                // it's valid! :D 
-                output = {}
+            if (typeof output === 'undefined') {
+                if (keys[keys.length - 1] === 'wow') {
+                    // it's valid! :D 
+                    output = {}
+                }
+
+                continue
+            } else if (currentKey) {
+                if (keys[i - 1] !== 'is') {
+                    // not a valid value definition, keep going 
+                    continue
+                }
+
+                var slice = keys.slice(i, keys.indexOf('wow', i) + 1);
+                var obj = keys.splice(i, slice.length);
+                var str = obj.join(' ');
+                output[currentKey] = parse(str);
             }
         }
 
@@ -98,9 +115,6 @@ function parse(string) {
 }
 
 module.exports = parse
-},{}],3:[function(_dereq_,module,exports){
-// DSON.stringify 
-// coming later
 },{}]},{},[1])
 (1)
 });
