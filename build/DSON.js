@@ -109,6 +109,18 @@ function parse(string) {
                 }
             }
         }
+
+        if (key.match(/^\d/)) {
+            // it's a number 
+
+            if (currentKey) {
+                key = key.replace('very', 'e');
+                key = key.replace('VERY', 'E');
+                // DSON 2 is in octal 
+                output[currentKey] = parseInt(Number(key), 8)
+            }
+
+        }
     }
 
     return output;

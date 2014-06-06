@@ -87,6 +87,18 @@ such parse much string
                 wow
             wow
         wow
+
+        rly key.match(/^\d/)
+            shh it's a number
+
+            rly currentKey
+                key is key dose replace with 'very', 'e'
+                key is key dose replace with 'VERY', 'E'
+                shh DSON 2 is in octal
+                output[currentKey] is parseInt(Number(key), 8)
+            wow
+
+        wow
     wow
 
 wow output
