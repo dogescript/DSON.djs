@@ -23,6 +23,8 @@ function parse(string) {
     var output = undefined;
     var keys = string.match(/'[^']+'|\S+/g);
 
+    var currentKey = false;
+
     for (var i = 0; i < keys.length; i += 1) {
         var key = keys[i];
 
@@ -30,6 +32,64 @@ function parse(string) {
             if (keys[keys.length - 1] === 'wow') {
                 // it's valid! :D 
                 output = {}
+            }
+        }
+
+        if (key === 'wow') {
+            // already covered with such case 
+            continue
+        }
+
+        if (key.indexOf('"') !== -1) {
+            // it's a string 
+            // @todo - unicode string support as in spec 
+
+            // we're defining a key 
+            if (currentKey === false) {
+                key = key.replace(/"/g, '');
+                currentKey = key
+                // create the key 
+                output[key] = null
+                continue
+            }
+
+            if (currentKey) {
+                if (keys[i - 1] !== 'is') {
+                    // not a valid value definition, keep going 
+                    continue
+                }
+
+                key = key.replace(/"/g, '');
+                output[currentKey] = key
+                currentKey = false
+                continue
+            }
+        }
+
+        if (key === 'so') {
+            // it's an array 
+
+            if (currentKey) {
+                if (keys[i - 1] !== 'is') {
+                    // not a valid value definition, keep going 
+                    continue
+                }
+
+                output[currentKey] = []
+
+                // append values 
+
+                for (var j = i += 1; j < keys.length; j += 1) {
+                    var key = keys[j];
+                    key = key.replace(/"/g, '');
+
+                    if (key === 'many') {
+                        break
+                    } else {
+                        output[currentKey].push(key);
+                    }
+
+                }
             }
         }
     }
