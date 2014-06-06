@@ -11,7 +11,6 @@ You can see what I have so far by doing:
 
 ```bash
 npm install
-make build
 ```
 
 And then either:
