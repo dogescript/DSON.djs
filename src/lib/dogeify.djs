@@ -25,11 +25,18 @@ such dogeify much obj
             wow
             output += ' many'
         but rly type is 'object'
-            output += dogeify(val) 
+            output += ' "' + key + '" is ' + dogeify(val) 
         but rly type is 'number'
             output += ' "' + key + '" is ' + val.toString(8) + ''
         but rly type is 'string'
             output += ' "' + key + '" is "' + val + '"'
+        but rly type is 'boolean'
+            output += ' "' + key + '" is '
+            rly val is true
+                output += 'yes'
+            but
+                output += 'no'
+            wow
         but
             output += ' "' + key + '" is "' + val.toString() + '"'
         wow

@@ -44,11 +44,18 @@ function dogeify(obj) {
             }
             output += ' many'
         } else if (type === 'object') {
-            output += dogeify(val)
+            output += ' "' + key + '" is ' + dogeify(val)
         } else if (type === 'number') {
             output += ' "' + key + '" is ' + val.toString(8) + ''
         } else if (type === 'string') {
             output += ' "' + key + '" is "' + val + '"'
+        } else if (type === 'boolean') {
+            output += ' "' + key + '" is '
+            if (val === true) {
+                output += 'yes'
+            } else {
+                output += 'no'
+            }
         } else {
             output += ' "' + key + '" is "' + val.toString() + '"'
         }

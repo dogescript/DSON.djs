@@ -8,6 +8,9 @@
     "dogeify": "^0.0.1",
     "dogescript": "^2.3.0"
   },
+  "devDependencies": {
+    "tape": "^2.13.2"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/remixz/DSON.djs.git"
@@ -23,6 +26,7 @@
   },
   "homepage": "https://github.com/remixz/DSON.djs",
   "scripts": {
-    "prepublish": "./node_modules/.bin/browserify ./src/index.djs -t dogeify -s DSON > build/DSON.js"
+    "prepublish": "./node_modules/.bin/browserify ./src/index.djs -t dogeify -s DSON > build/DSON.js",
+    "test": "./node_modules/.bin/tape ./test"
   }
 }
