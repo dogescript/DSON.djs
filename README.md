@@ -21,7 +21,3 @@ Otherwise, just add the `build/DSON.js` file to your page, and use the new globa
 ### Usage
 * `DSON.parse(str)` - Parses a string of DSON into a JSON object
 * `DSON.dogeify(obj)` - Converts an object into a DSON string
-
-### TODO:
-
-* Add tests.
