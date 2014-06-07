@@ -17,8 +17,51 @@ DSON.dogeify = dogeify
 
 module.exports = DSON
 },{"./lib/dogeify.djs":2,"./lib/parse.djs":3}],2:[function(_dereq_,module,exports){
-// DSON.stringify 
-// coming later
+// DSON.dogeify 
+
+function dogeify(obj) {
+    var output = 'such';
+
+    if (typeof obj !== 'object' || obj.length > -1) {
+        throw 'Error: Must pass an object to dogeify'
+    }
+
+    for (var key in obj) {
+        var val = obj[key];
+
+        var type = typeof val;
+
+        if (type === 'object' && val.length > -1) {
+            output += ' "' + key + '" is so '
+            for (var i = 0; i < val.length; i += 1) {
+                if (i === val.length - 1) {
+                    output += ' and '
+                } else if (i !== 0) {
+                    output += ' also '
+                }
+
+                output += '"' + val[i] + '"'
+            }
+            output += ' many'
+        } else if (type === 'object') {
+            output += dogeify(val)
+        } else if (type === 'number') {
+            output += ' "' + key + '" is ' + val.toString(8) + ''
+        } else if (type === 'string') {
+            output += ' "' + key + '" is "' + val + '"'
+        } else {
+            output += ' "' + key + '" is "' + val.toString() + '"'
+        }
+
+        output += ','
+    }
+
+    output = output.replace(/,$/, '');
+    output += ' wow'
+    return output
+}
+
+module.exports = dogeify
 },{}],3:[function(_dereq_,module,exports){
 // DSON.parse 
 
