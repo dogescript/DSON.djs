@@ -1,5 +1,7 @@
 ## DSON.djs
 
+[![NPM](https://nodei.co/npm/dson-djs.png?compact=true)](https://nodei.co/npm/dson-djs/)
+
 A [DSON](http://dogeon.org/) parser in Dogescript. What am I doing?!
 
 Work in progress. It mostly works, but there are probably some edge cases still.
