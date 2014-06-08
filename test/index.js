@@ -43,7 +43,7 @@ test('DSON.dogeify', function (t) {
 
     for (var key in tests) {
         var data = tests[key];
-        t.deepEqual(DSON.dogeify(data.expected), (data.dogeifyExpect || data.dson), 'Produced expected result from test "' + key + '"');
+        t.equal(DSON.dogeify(data.expected), (data.dogeifyExpect || data.dson), 'Produced expected result from test "' + key + '"');
     }
 
     t.end();
