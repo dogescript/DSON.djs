@@ -1,5 +1,6 @@
 ## DSON.djs
 
+[![Build Status](https://travis-ci.org/dogescript/DSON.djs.svg?branch=master)](https://travis-ci.org/dogescript/DSON.djs)
 [![NPM](https://nodei.co/npm/dson-djs.png?compact=true)](https://nodei.co/npm/dson-djs/)
 
 A [DSON](http://dogeon.org/) parser in Dogescript. What am I doing?!
